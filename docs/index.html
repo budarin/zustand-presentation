@@ -4,7 +4,10 @@
     <title>Shower Presentation Engine</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="node_modules/@shower/ribbon/styles/styles.css"
+    />
     <style>
       .shower {
         --slide-side: 50px;
@@ -604,13 +607,13 @@
       <pre>
       <code>const <b>storeHook</b> = <b>create</b>((set, get) => { store_config })</code>
       <code>storeHook: (<b>selector</b>) => selectedState</code>
-      <code>selector: (state) => ({ извлечённые данные из state })</code>
+      <code class="next">selector: (state) => ({ извлечённые данные из state })</code>
 
       <br>
-      <span>Хук имеет статические методы:</span>
-      <code>storeHook.<b>getState</b>: () => state</code>
-      <code>storeHook.<b>setState</b>: (newState) => void</code>
-      <code>storeHook.<b>subscribe</b>: (callback) => void</code>
+      <span class="next">Хук имеет статические методы:</span>
+      <code class="next">storeHook.<b>getState</b>: () => state</code>
+      <code class="next">storeHook.<b>setState</b>: (newState) => void</code>
+      <code class="next">storeHook.<b>subscribe</b>: (callback) => void</code>
     </pre>
     </section>
 
@@ -695,7 +698,7 @@
           которые будут обрабатывать события и изменять состояние хранилища.
         </p>
         <br />
-        <p>Zustand предлагает в пакете такие middleware:</p>
+        <p>Zustand предлагает в пакете такие middleware как:</p>
         <ul>
           <li>
             <b>persist</b> - для сохранения/восстановления данных в/из
@@ -742,7 +745,7 @@
         }
       </style>
       <h2>Zustand.js</h2>
-      <h3>А что под капотом? - куда уж проще!</h3>
+      <h3>А что под капотом? Куда уж проще!?</h3>
       <img class="codepic" src="./assets/idea_realization.png" alt="" />
     </section>
 
@@ -766,13 +769,12 @@
 
       <div class="conclusions">
         <p>Используя статические методы хука:</p>
-        <strong>
-          <ul>
-            <li>storeHook.getState()</li>
-            <li>storeHook.setState()</li>
-            <li>storeHook.subscribe()</li>
-          </ul>
-        </strong>
+
+        <ul>
+          <li>.<b>getState()</b></li>
+          <li>.<b>setState()</b></li>
+          <li>.<b>subscribe()</b></li>
+        </ul>
         <p>
           вы получаете доступ к стору из любого окружения: как из методов стора,
           обработчиков событий React компонент, так и из vanilla JavaScript.
@@ -1126,7 +1128,7 @@
 
     <div class="progress"></div>
 
-    <script src="shower/shower.js"></script>
+    <script src="node_modules/@shower/core/dist/shower.js"></script>
     <!-- Copyright © 2024 Yours Truly, Famous Inc. -->
   </body>
 </html>
