@@ -4,8 +4,8 @@ export function useStore(store, selector) {
   const [state, setState] = useState(store.getState(selector));
 
   useEffect(() => {
-    const unsubscribe = store.subscribe((newState) => {
-      const newState = selector(newState);
+    const unsubscribe = store.subscribe((storeState) => {
+      const newState = selector(storeState);
 
       if (newState !== state) {
         setState(newState);
