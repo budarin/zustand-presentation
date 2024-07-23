@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 export function useStore(store, selector) {
-  const [prevState, setPrevState] = useState(store.getState(selector));
+  const [state, setState] = useState(store.getState(selector));
 
   useEffect(() => {
     const unsubscribe = store.subscribe((newState) => {
-      const currentState = selector(newState);
+      const newState = selector(newState);
 
-      if (currentState !== prevState) {
-        setPrevState(currentState);
+      if (newState !== state) {
+        setState(newState);
       }
     });
 
@@ -17,5 +17,5 @@ export function useStore(store, selector) {
     };
   }, [store, selector]);
 
-  return prevState;
+  return state;
 }
