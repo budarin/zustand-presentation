@@ -1,157 +1,273 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <title>
+      Zustand.js - Лучшая альтернатива Redux для управления состоянием в React |
+      Презентация
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <title>Shower Presentation Engine</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="shower/themes//ribbon/styles/styles.css" />
-  <style>
-    .shower {
-      --slide-side: 50px;
-      --slide-ratio: calc(16 / 9);
-    }
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Zustand.js - современный, легкий и быстрый стейт-менеджер для React. Лучшая альтернатива устаревшему Redux. Узнайте почему Zustand превосходит Redux и другие стейт-менеджеры в простоте, производительности и масштабируемости."
+    />
+    <meta
+      name="keywords"
+      content="Zustand, Zustand.js, React state management, стейт-менеджер React, альтернатива Redux, управление состоянием React, React state manager, Redux альтернатива, легкий стейт-менеджер, быстрый стейт-менеджер, React hooks, React контекст, Flux альтернатива"
+    />
+    <meta name="author" content="Vadim Budarin" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Russian" />
+    <link
+      rel="canonical"
+      href="https://budarin.github.io/zustand-presentation/"
+    />
 
-    .slide {
-      padding: 0 var(--slide-side) 0;
-    }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://budarin.github.io/zustand-presentation/"
+    />
+    <meta
+      property="og:title"
+      content="Zustand.js - Лучшая альтернатива Redux для управления состоянием в React"
+    />
+    <meta
+      property="og:description"
+      content="Zustand.js - современный, легкий и быстрый стейт-менеджер для React. Лучшая альтернатива устаревшему Redux. Узнайте почему Zustand превосходит Redux и другие стейт-менеджеры."
+    />
+    <meta
+      property="og:image"
+      content="https://budarin.github.io/zustand-presentation/assets/bear.jpg"
+    />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Zustand.js Presentation" />
 
-    .slide::after {
-      left: 930px;
-    }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://budarin.github.io/zustand-presentation/"
+    />
+    <meta
+      name="twitter:title"
+      content="Zustand.js - Лучшая альтернатива Redux для React"
+    />
+    <meta
+      name="twitter:description"
+      content="Zustand.js - современный, легкий и быстрый стейт-менеджер для React. Лучшая альтернатива устаревшему Redux."
+    />
+    <meta
+      name="twitter:image"
+      content="https://budarin.github.io/zustand-presentation/assets/bear.jpg"
+    />
 
-    .slide h2 {
-      margin-top: 41px;
-      margin-bottom: 20px;
-    }
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "PresentationDigitalDocument",
+        "name": "Zustand.js - Лучшая альтернатива Redux для управления состоянием в React",
+        "description": "Презентация о Zustand.js - современном, легком и быстром стейт-менеджере для React, который является лучшей альтернативой устаревшему Redux",
+        "author": {
+          "@type": "Person",
+          "name": "Vadim Budarin",
+          "email": "budarin-vv@yandex.ru"
+        },
+        "about": {
+          "@type": "SoftwareApplication",
+          "name": "Zustand",
+          "applicationCategory": "WebApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        "keywords": "Zustand, React state management, стейт-менеджер React, альтернатива Redux, управление состоянием React",
+        "inLanguage": "ru-RU",
+        "learningResourceType": "Presentation"
+      }
+    </script>
 
-    .slide h3 {
-      margin-block: 0.5em;
-      line-height: 40px;
-    }
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Zustand.js - Лучшая альтернатива Redux для управления состоянием в React",
+        "description": "Zustand.js - современный, легкий и быстрый стейт-менеджер для React. Лучшая альтернатива устаревшему Redux и другим стейт-менеджерам.",
+        "author": {
+          "@type": "Person",
+          "name": "Vadim Budarin"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Zustand.js Presentation"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://budarin.github.io/zustand-presentation/"
+        },
+        "keywords": "Zustand, React state management, стейт-менеджер React, альтернатива Redux, управление состоянием React, React state manager, Redux альтернатива"
+      }
+    </script>
 
-    .slide p {
-      margin-block: 0.3em;
-    }
-
-    .slide .conclusions {
-      line-height: 1.5;
-      text-wrap: pretty;
-    }
-
-    .slide .conclusions ul {
-      margin-left: 3em;
-    }
-
-    .slide .coverImg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-  </style>
-</head>
-
-<body class="shower full">
-  <header class="caption">
-    <h1>Shower Presentation Engine</h1>
-    <p>Yours Truly, Famous Inc.</p>
-  </header>
-
-  <section class="slide cover-slide" id="cover">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css" />
     <style>
-      .slide.cover-slide::after {
-        display: none;
+      .shower {
+        --slide-side: 50px;
+        --slide-ratio: calc(16 / 9);
       }
 
-      h2.main {
-        margin-bottom: 0;
+      .slide {
+        padding: 0 var(--slide-side) 0;
       }
 
-      h2.main,
-      h2.main+p {
-        color: white;
+      .slide::after {
+        left: 930px;
       }
 
-      h2.main+p {
-        line-height: 30px;
+      .slide h2 {
+        margin-top: 41px;
+        margin-bottom: 20px;
       }
 
-      .qr {
+      .slide h3 {
+        margin-block: 0.5em;
+        line-height: 40px;
+      }
+
+      .slide p {
+        margin-block: 0.3em;
+      }
+
+      .slide .conclusions {
+        line-height: 1.5;
+        text-wrap: pretty;
+      }
+
+      .slide .conclusions ul {
+        margin-left: 3em;
+      }
+
+      .slide .coverImg {
         position: absolute;
-        bottom: 70px;
-        right: 50px;
-        height: 200px;
-      }
-
-      .slide a.link {
-        position: absolute;
-        color: white;
-        bottom: 56px;
-        right: 50px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
       }
     </style>
-    <img class="coverImg" src="./assets/bear.jpg" alt="" />
-    <header>
-      <h2 class="main">Zustand.js пришел изменить все правила игры!</h2>
-      <p>Забудьте все, что вы знали о стейт-менеджерах прежде.</p>
+  </head>
+
+  <body class="shower full">
+    <header class="caption">
+      <h1>
+        Zustand.js - Лучшая альтернатива Redux для управления состоянием в React
+      </h1>
+      <p>Современный, легкий и быстрый стейт-менеджер для React приложений</p>
     </header>
-    <!-- <img class="qr" src="./assets/./clck.svg" alt="" />
+
+    <section class="slide cover-slide" id="cover">
+      <style>
+        .slide.cover-slide::after {
+          display: none;
+        }
+
+        h2.main {
+          margin-bottom: 0;
+        }
+
+        h2.main,
+        h2.main + p {
+          color: white;
+        }
+
+        h2.main + p {
+          line-height: 30px;
+        }
+
+        .qr {
+          position: absolute;
+          bottom: 70px;
+          right: 50px;
+          height: 200px;
+        }
+
+        .slide a.link {
+          position: absolute;
+          color: white;
+          bottom: 20px;
+          right: 50px;
+        }
+      </style>
+      <img
+        class="coverImg"
+        src="./assets/bear.jpg"
+        alt="Zustand.js - современный стейт-менеджер для React, альтернатива Redux"
+      />
+      <header>
+        <h2 class="main">Zustand.js пришел изменить все правила игры!</h2>
+        <p>Забудьте все, что вы знали о стейт-менеджерах прежде.</p>
+      </header>
+      <!-- <img class="qr" src="./assets/./clck.svg" alt="" />
     <a class="link" target="_blank" href="https://clck.ru/38F2VS">https://clck.ru/38F2VS</a> -->
-    <a class="link" target="_blank" href="https://t.me/budarin_dev">https://t.me/budarin_dev</a>
-  </section>
+    </section>
 
-  <section class="slide">
-    <style>
-      .slide figure {
-        margin: 50px;
-      }
+    <section class="slide">
+      <style>
+        .slide figure {
+          margin: 50px;
+        }
 
-      .slide blockquote+figcaption {
-        margin: auto;
-      }
-    </style>
-    <h2>Вступительное слово</h2>
-    <figure>
-      <blockquote>
-        Сложность в программировании никуда не исчезает - она лишь
-        перераспределяется и перетекает из одной формы в другую
-      </blockquote>
-      <figcaption>© undefined</figcaption>
-    </figure>
-    <!-- <div class="conclusions">
-      <p>
-        Порой разработчики создают новые абстракции, которые ведут к
-        значительному усложнению кода. Иногда эти абстракции отдаляют их от
-        оптимального решения на многие годы!<br />Эта история об одном таком
-        случае, который, к счастью, завершился благополучно.
-      </p>
-    </div> -->
-  </section>
+        .slide blockquote + figcaption {
+          margin: auto;
+        }
+      </style>
+      <h2>Вступительное слово</h2>
+      <figure>
+        <blockquote>
+          Сложность в программировании никуда не исчезает - она лишь
+          перераспределяется и перетекает из одной формы в другую
+        </blockquote>
+        <figcaption>© undefined</figcaption>
+      </figure>
+      <div class="conclusions">
+        <p>
+          Порой разработчики создают новые абстракции, которые ведут к
+          значительному усложнению. Иногда эти абстракции отдаляют их от
+          оптимального решения на многие годы!<br />Эта история об одном таком
+          случае, который, к счастью, завершился благополучно.
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="ideal">
-    <h2>Идеальный стейт-менеджер: какой он?</h2>
-    <div class="conclusions">
-      <ul>
-        <li>компактный</li>
-        <li>простой в подключении</li>
-        <li>простой в использовании</li>
-        <li>не добавляющий когнитивной нагрузки</li>
-        <li>активно доставляющий изменения в представление</li>
-        <li>производительный</li>
-        <li>легко оптимизируемый</li>
-        <li>легко масштабируемый</li>
-        <li>имеющий легко коддерживаемый код</li>
-        <li>исключающий проблемы типа Zombie children и context loss</li>
-        <li>поддерживающий работу React concurency mode</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="ideal">
+      <h2>Идеальный стейт-менеджер: какой он?</h2>
+      <div class="conclusions">
+        <ul>
+          <li>компактный</li>
+          <li>простой в подключении</li>
+          <li>простой в использовании</li>
+          <li>не добавляющий когнитивной нагрузки</li>
+          <li>активно доставляющий изменения в представление</li>
+          <li>производительный</li>
+          <li>легко оптимизируемый</li>
+          <li>легко масштабируемый</li>
+          <li>имеющий легко коддерживаемый код</li>
+          <li>исключающий проблемы типа Zombie children и context loss</li>
+          <li>поддерживающий работу React concurency mode</li>
+        </ul>
+      </div>
+    </section>
 
-  <!-- <section class="slide" id="academy">
+    <!-- <section class="slide" id="academy">
     <h2>Академическая часть</h2>
     <p>
       Цель: показать вектор развития стейт-менеджеров для обоснования выбора
@@ -163,7 +279,7 @@
     </p>
   </section> -->
 
-  <!-- <section class="slide" id="lapsha">
+    <!-- <section class="slide" id="lapsha">
       <style>
         .slide .codepic {
           position: absolute;
@@ -179,306 +295,324 @@
       <img class="codepic" src="./assets/universal-js.jpg" alt="" />
     </section> -->
 
-  <section class="slide" id="lapsha">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Лапша-код</h3>
+    <section class="slide" id="lapsha">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Лапша-код</h3>
 
-    <p>А кто его не писал?</p>
-    <p>Состояние приложения хранилось во множестве глобальных переменных</p>
+      <p>А кто его не писал?</p>
+      <p>Состояние приложения хранилось во множестве глобальных переменных</p>
 
-    <br />
-    <div class="conclusions">
-      <p><strong>Преимущества:</strong> простота</p>
+      <br />
+      <div class="conclusions">
+        <p><strong>Преимущества:</strong> простота</p>
+        <p>
+          <strong>Недостатки:</strong> главным недостатком является не боль в
+          пальцах при поддержке такого кода, а то, что глобальные переменные
+          <strong>никогда не удаляются из памяти</strong>, их много и они не
+          связаны логически между собой!
+        </p>
+        <p>Понятие бизнес-логики изменения состояния отсутствует</p>
+      </div>
+    </section>
+
+    <section class="slide" id="appConfig">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Лапша-код: объект как хранилище состояния</h3>
       <p>
-        <strong>Недостатки:</strong> главным недостатком является не боль в
-        пальцах при поддержке такого кода, а то, что глобальные переменные
-        <strong>никогда не удаляются из памяти</strong>, их много и они не
-        связаны логически между собой!
+        Состояние приложения хранится в одном объекте типа
+        <strong>appConfig</strong>
       </p>
-      <p>Понятие бизнес-логики изменения состояния отсутствует</p>
-    </div>
-  </section>
 
-  <section class="slide" id="appConfig">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Лапша-код: объект - как хранилище состояния</h3>
-    <p>
-      Состояние приложения хранится в одном объекте типа
-      <strong>appConfig</strong>
-    </p>
+      <br />
+      <div class="conclusions">
+        <p>
+          <strong>Преимущества:</strong> состояние оформлено в одну сущность
+        </p>
+        <p><strong>Недостатки:</strong></p>
+        <ul>
+          <li>хранение в глобальной переменной</li>
+          <li>
+            изменения не распространияются активно в точки потребления
+            информации
+          </li>
+          <li>бизнес-логика изменения данных размазана по коду</li>
+        </ul>
+      </div>
+    </section>
 
-    <br />
-    <div class="conclusions">
-      <p>
-        <strong>Преимущества:</strong> состояние оформлено в одну сущность
-      </p>
-      <p><strong>Недостатки:</strong></p>
-      <ul>
-        <li>хранение в глобальной переменной</li>
-        <li>
-          изменения не распространияются активно в точки потребления
-          информации
-        </li>
-        <li>бизнес-логика изменения данных размазана по коду</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="MVC">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 220px;
+          left: 50px;
+          height: 300px;
+        }
+      </style>
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>MV*</h3>
 
-  <section class="slide" id="MVC">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 220px;
-        left: 50px;
-        height: 300px;
-      }
-    </style>
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>MV*</h3>
+      <p>Теория</p>
+      <img
+        class="codepic"
+        src="./assets/mvc.jpg"
+        alt="Архитектурная схема MVC паттерна для управления состоянием"
+      />
+    </section>
 
-    <p>Теория</p>
-    <img class="codepic" src="./assets/mvc.jpg" alt="" />
-  </section>
+    <section class="slide" id="MVC+">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>MV*</h3>
+      <p>Состояние приложения хранится в модели</p>
 
-  <section class="slide" id="MVC+">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>MV*</h3>
-    <p>Состояние приложения хранится в модели</p>
+      <br />
+      <div class="conclusions">
+        <p><strong>Преимущества:</strong></p>
+        <ul>
+          <li>состояние структурировано по моделям</li>
+          <li>логика изменения данных инкапсулирована в модели</li>
+          <li>изменения состояния активно "влияют" на представления</li>
+        </ul>
+      </div>
+    </section>
 
-    <br />
-    <div class="conclusions">
-      <p><strong>Преимущества:</strong></p>
-      <ul>
-        <li>состояние структурировано по моделям</li>
-        <li>логика изменения данных инкапсулирована в модели</li>
-        <li>изменения состояния активно "влияют" на представления</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="MVC-real">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 220px;
+          left: 50px;
+          height: 300px;
+        }
+      </style>
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>MV*</h3>
 
-  <section class="slide" id="MVC-real">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 220px;
-        left: 50px;
-        height: 300px;
-      }
-    </style>
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>MV*</h3>
+      <p>Реальность</p>
+      <img
+        class="codepic"
+        src="./assets/mvc-hell.webp"
+        alt="Проблемы MVC паттерна в реальных приложениях - сложность связей между моделями"
+      />
+    </section>
 
-    <p>Реальность</p>
-    <img class="codepic" src="./assets/mvc-hell.webp" alt="" />
-  </section>
+    <section class="slide" id="MVC-">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>MV*</h3>
+      <p>Состояние приложения хранится в модели</p>
 
-  <section class="slide" id="MVC-">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>MV*</h3>
-    <p>Состояние приложения хранится в модели</p>
+      <div class="conclusions">
+        <p><strong>Недостатки:</strong></p>
+        <ul>
+          <li>огромное количество моделей в приложении</li>
+          <li>связи между моделями и другими сущностями не контролируемы</li>
+          <li>
+            поток данных разнонаправленный, не обозреваемый и не контролируемый
+          </li>
+          <li>бизнес-логика управления данными размазана по всему коду</li>
+          <li>
+            рано или поздно возникают зацикливания при распространении изменений
+          </li>
+          <li>OOП - это много бойлерплейта и не производительно</li>
+          <li>
+            рефакторинг такого кода - это кошмар разработчика - большая
+            хрупкость
+          </li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="conclusions">
-      <p><strong>Недостатки:</strong></p>
-      <ul>
-        <li>огромное количество моделей в приложении</li>
-        <li>связи между моделями и другими сущностями не контролируемы</li>
-        <li>
-          поток данных разнонаправленный, не обозреваемый и не контролируемый
-        </li>
-        <li>бизнес-логика управления данными размазана по всему коду</li>
-        <li>
-          рано или поздно возникают зацикливания при распространении изменений
-        </li>
-        <li>
-          рефакторинг такого кода - это кошмар разработчика - большая
-          хрупкость
-        </li>
-        <li>OOП - это много бойлерплейта и не производительно</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="Flux">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Flux</h3>
+      <p>Однонаправленный поток данных</p>
+      <br />
+      <div class="conclusions">
+        <p>
+          Создание однонаправленного контролируемого и предсказуемого потока
+          данных:
+          <strong
+            >представления -> канал данных -> модели -> представления</strong
+          >
+        </p>
+        <p>
+          Для того, чтобы различать данные для разных сторов (моделей) в канале
+          - данные снабдили метаданными и назвали этот тип данных
+          <strong>Action</strong>
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="Flux">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Flux</h3>
-    <p>Однонаправленный поток данных</p>
-    <br />
-    <div class="conclusions">
-      <p>
-        Создание однонаправленного контролируемого и предсказуемого потока
-        данных:
-        <strong>представления -> канал данных -> модели -> представления</strong>
-      </p>
-      <p>
-        Для того, чтобы различать данные для разных сторов (моделей) в канале
-        - данные снабдили метаданными и назвали этот тип данных
-        <strong>Action</strong>
-      </p>
-    </div>
-  </section>
+    <section class="slide" id="Flux-schema">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 220px;
+          left: 50px;
+          height: 300px;
+        }
+      </style>
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Flux</h3>
+      <p>Однонаправленный поток данных</p>
+      <img
+        class="codepic"
+        src="./assets/flux.jpeg"
+        alt="Архитектура Flux - однонаправленный поток данных для управления состоянием"
+      />
+    </section>
 
-  <section class="slide" id="Flux-schema">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 220px;
-        left: 50px;
-        height: 300px;
-      }
-    </style>
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Flux</h3>
-    <p>Однонаправленный поток данных</p>
-    <img class="codepic" src="./assets/flux.jpeg" alt="" />
-  </section>
+    <section class="slide" id="Flux+">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Flux</h3>
+      <p>Однонаправленный поток данных</p>
+      <br />
+      <div class="conclusions">
+        <p><strong>Преимущества:</strong></p>
+        <ul>
+          <li>единственный однонаправленнный поток данных</li>
+          <li>и этот поток данных - контролируемый</li>
+        </ul>
+      </div>
+    </section>
 
-  <section class="slide" id="Flux+">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Flux</h3>
-    <p>Однонаправленный поток данных</p>
-    <br />
-    <div class="conclusions">
-      <p><strong>Преимущества:</strong></p>
-      <ul>
-        <li>единственный однонаправленнный поток данных</li>
-        <li>и этот поток данных - контролируемый</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="Flux-">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Flux</h3>
+      <p>Однонаправленный поток данных</p>
 
-  <section class="slide" id="Flux-">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Flux</h3>
-    <p>Однонаправленный поток данных</p>
+      <br />
+      <div class="conclusions">
+        <p><strong>Недостатки:</strong></p>
+        <ul>
+          <li>это не фреймворк + дополнительная когнитивная нагрузка</li>
+          <li>сложно настраивается и много шаблонного кода</li>
+          <li>большое количество сторов, связи между ними не очевидны</li>
+          <li>по-прежнему много кода для поддержки связей между сторами</li>
+          <li>необходимость ожидания изменений в сторах в цепочке изменений</li>
+          <li>
+            бизнес-логика размазана в коде изменений в сторах и между ними
+          </li>
+        </ul>
+      </div>
+    </section>
 
-    <br />
-    <div class="conclusions">
-      <p><strong>Недостатки:</strong></p>
-      <ul>
-        <li>это не фреймворк + дополнительная когнитивная нагрузка</li>
-        <li>сложно настраивается и много шаблонного кода</li>
-        <li>большое количество сторов, связи между ними не очевидны</li>
-        <li>по-прежнему много кода для поддержки связей между сторами</li>
-        <li>необходимость ожидания изменений в сторах в цепочке изменений</li>
-        <li>
-          бизнес-логика размазана в коде изменений в сторах и между ними
-        </li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="Redux">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Redux</h3>
+      <p>Это - Flux с единым стором и логикой по его обновлению</p>
+      <br />
+      <div class="conclusions">
+        <p><strong>Изменения:</strong></p>
+        <p>
+          весь зопарк сторов с их не прозрачной логикой обновления заменили
+          единым стором (полная аналогия с БД) и централизованной чистой логикой
+          его изменения.
+        </p>
+        <p>
+          Добавили <strong>middleware</strong> для обработки бизнес-логики и
+          сайд-эффектов
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="Redux">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Redux</h3>
-    <p>Это - Flux с единым стором и логикой по его обновлению</p>
-    <br />
-    <div class="conclusions">
-      <p><strong>Изменения:</strong></p>
-      <p>
-        весь зопарк сторов с их не прозрачной логикой обновления заменили
-        единым стором (полная аналогия с БД) и централизованной чистой логикой
-        его изменения.
-      </p>
-      <p>
-        Добавили <strong>middleware</strong> для обработки бизнес-логики и
-        сайд-эффектов
-      </p>
-    </div>
-  </section>
+    <section class="slide" id="Redux-schema">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 220px;
+          left: 50px;
+          height: 300px;
+        }
+      </style>
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Redux</h3>
+      <p>Это - Flux с единым стором и логикой по его обновлению</p>
+      <img
+        class="codepic"
+        src="./assets/redux.png"
+        alt="Архитектура Redux - Flux с единым стором и централизованной логикой изменений"
+      />
+    </section>
 
-  <section class="slide" id="Redux-schema">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 220px;
-        left: 50px;
-        height: 300px;
-      }
-    </style>
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Redux</h3>
-    <p>Это - Flux с единым стором и логикой по его обновлению</p>
-    <img class="codepic" src="./assets/redux.png" alt="" />
-  </section>
+    <section class="slide" id="Redux+">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Redux</h3>
+      <p>Это -Flux с единым стором и логикой по его обновлению</p>
+      <br />
+      <div class="conclusions">
+        <p><strong>Преимущества:</strong></p>
+        <ul>
+          <li>фреймворк, строго определяющий правила поведения и реализации</li>
+          <li>единственный однонаправленнный поток данных</li>
+          <li>единственный стор c чистой и прозрачной логикой изменений</li>
+          <li>бизнес-логика и логика обработки сайд-эффектов обособлена</li>
+          <li>
+            код приложения стал относительно простым и легко и безопасно
+            изменяем
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  <section class="slide" id="Redux+">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Redux</h3>
-    <p>Это -Flux с единым стором и логикой по его обновлению</p>
-    <br />
-    <div class="conclusions">
-      <p><strong>Преимущества:</strong></p>
-      <ul>
-        <li>фреймворк, строго определяющий правила поведения и реализации</li>
-        <li>единственный однонаправленнный поток данных</li>
-        <li>единственный стор c чистой и прозрачной логикой изменений</li>
-        <li>бизнес-логика и логика обработки сайд-эффектов обособлена</li>
-        <li>
-          код приложения стал относительно простым и легко и безопасно
-          изменяем
-        </li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="Redux-">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Redux</h3>
+      <p>Это -Flux с единым стором и логикой по его обновлению</p>
 
-  <section class="slide" id="Redux-">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Redux</h3>
-    <p>Это -Flux с единым стором и логикой по его обновлению</p>
+      <div class="conclusions">
+        <p><strong>Недостатки:</strong></p>
+        <ul>
+          <li>добавляет большую когнитивную нагрузку</li>
+          <li>относительно сложно настраивается в приложение</li>
+          <li>не удобно работать с бизнес-логикой и сайд-эффектами</li>
+          <li>из-за этого бизнес логика расползается по приложению</li>
+          <li>имеет относительно много бойлерплейта</li>
+          <li>оптимизация порой не тривиальна</li>
+          <li>плохо масштабируется</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="conclusions">
-      <p><strong>Недостатки:</strong></p>
-      <ul>
-        <li>добавляет большую когнитивную нагрузку</li>
-        <li>относительно сложно настраивается в приложение</li>
-        <li>не удобно работать с бизнес-логикой и сайд-эффектами</li>
-        <li>из-за этого бизнес логика расползается по приложению</li>
-        <li>имеет относительно много бойлерплейта</li>
-        <li>оптимизация порой не тривиальна</li>
-        <li>плохо масштабируется</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="academy_results+">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Итоги развития</h3>
 
-  <section class="slide" id="academy_results+">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Итоги развития</h3>
+      <br />
+      <div class="conclusions">
+        <p><strong>Чего удалось достичь:</strong></p>
+        <ul>
+          <li>
+            создали единственный упорядоченный, однонаправленным поток данных
+          </li>
+          <li>создали единый стор с прозрачной логикой обновления</li>
+          <li>
+            увеличили устойчивость кода к ошибкам в процессе внесения изменений
+          </li>
+        </ul>
+      </div>
+    </section>
 
-    <br />
-    <div class="conclusions">
-      <p><strong>Чего удалось достичь:</strong></p>
-      <ul>
-        <li>
-          создали единственный упорядоченный, однонаправленным поток данных
-        </li>
-        <li>создали единый стор с прозрачной логикой обновления</li>
-        <li>
-          увеличили устойчивость кода к ошибкам в процессе внесения изменений
-        </li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="academy_results-">
+      <h2>Ретроспектива развития стейт-менеджеров</h2>
+      <h3>Итоги развития</h3>
 
-  <section class="slide" id="academy_results-">
-    <h2>Ретроспектива развития стейт-менеджеров</h2>
-    <h3>Итоги развития</h3>
+      <br />
+      <div class="conclusions">
+        <p><strong>Чего не удалось достичь:</strong></p>
+        <ul>
+          <li>отсутствия дополнительной когнитивной нагрузки</li>
+          <li>простоты в интеграции</li>
+          <li>простоты в использовании</li>
+          <li>отсутствия бойлерплейта</li>
+          <li>простоты в оптимизации</li>
+          <li>инкапсуляции логики изменения данных в сторе</li>
+          <li>масштабируемости</li>
+        </ul>
+      </div>
+    </section>
 
-    <br />
-    <div class="conclusions">
-      <p><strong>Чего не удалось достичь:</strong></p>
-      <ul>
-        <li>отсутствия дополнительной когнитивной нагрузки</li>
-        <li>простоты в интеграции</li>
-        <li>простоты в использовании</li>
-        <li>отсутствия бойлерплейта</li>
-        <li>простоты в оптимизации</li>
-        <li>инкапсуляции бизнес-логики изменения данных в сторе</li>
-        <li>масштабируемости</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- <section class="slide" id="technical">
+    <!-- <section class="slide" id="technical">
     <h2>Техническая часть</h2>
     <p><strong>Цель:</strong></p>
     <div class="conclusions">
@@ -490,121 +624,128 @@
     </div>
   </section> -->
 
-  <section class="slide" id="Zustand">
-    <style>
-      h2.main1 {
-        color: white;
-        text-align: center;
-        font-size: 100px;
-      }
+    <section class="slide" id="Zustand">
+      <style>
+        h2.main1 {
+          color: white;
+          text-align: center;
+          font-size: 100px;
+        }
 
-      .flow {
-        position: absolute;
-        top: 250px;
-        right: 150px;
-        color: white;
-      }
+        .flow {
+          position: absolute;
+          top: 250px;
+          right: 150px;
+          color: white;
+        }
 
-      .flow1 {
-        position: absolute;
-        top: 330px;
-        right: 200px;
-        color: white;
-      }
+        .flow1 {
+          position: absolute;
+          top: 330px;
+          right: 200px;
+          color: white;
+        }
 
-      .flow2 {
-        position: absolute;
-        top: 400px;
-        right: 250px;
-        color: white;
-      }
+        .flow2 {
+          position: absolute;
+          top: 400px;
+          right: 250px;
+          color: white;
+        }
 
-      .flow3 {
-        position: absolute;
-        top: 460px;
-        right: 350px;
-        color: white;
-      }
+        .flow3 {
+          position: absolute;
+          top: 460px;
+          right: 350px;
+          color: white;
+        }
 
-      .flow4 {
-        position: absolute;
-        top: 510px;
-        right: 50px;
-        color: white;
-      }
-    </style>
-    <h2 class="main1">Zustand.js 🚀</h2>
-    <img class="coverImg" src="./assets/singulyarnost.jpg" alt="" />
-    <span class="flow">Нирвана</span>
-    <span class="flow1">простота</span>
-    <span class="flow2">масштабируемость</span>
-    <span class="flow3">производительность</span>
-    <span class="flow4">лафа для разработчика!</span>
-  </section>
+        .flow4 {
+          position: absolute;
+          top: 510px;
+          right: 50px;
+          color: white;
+        }
+      </style>
+      <h2 class="main1">Zustand.js 🚀</h2>
+      <img
+        class="coverImg"
+        src="./assets/singulyarnost.jpg"
+        alt="Zustand.js - простота, масштабируемость, производительность для React разработчиков"
+      />
+      <span class="flow">Нирвана</span>
+      <span class="flow1">простота</span>
+      <span class="flow2">масштабируемость</span>
+      <span class="flow3">производительность</span>
+      <span class="flow4">лафа для разработчика!</span>
+    </section>
 
-  <section class="slide" id="overview">
-    <h2>Zustand.js</h2>
-    <h3>Давайте знакомиться</h3>
+    <section class="slide" id="overview">
+      <h2>Zustand.js</h2>
+      <h3>Давайте знакомиться</h3>
 
-    <br />
-    <div class="conclusions">
-      <p>
-        Небольшое, быстрое и масштабируемое решение для управления состоянием,
-        основанное на принципах <strong>Flux</strong> и immutable state (как и
-        React).
-      </p>
-      <p><strong>view --> event handlers --> store --> react hook --> view</strong></p>
-      <p>
-        В его основе лежит хранилище основанное на базе
-        <strong>publish/subscribe</strong>.
-      </p>
-      <p>
-        Имеет удобный API, основанный на единственном <b>хуке</b>, не создает лишнего
-        шаблонного кода и не навязывает жестких правил использования.
-      </p>
-      <p>
-        Не имеет проблем с <strong>Zombie children</strong> и
-        <strong>context loss</strong> и отлично работает с
-        <strong>React concurrency mode</strong>
-      </p>
-    </div>
-  </section>
+      <br />
+      <div class="conclusions">
+        <p>
+          Небольшое, быстрое и масштабируемое решение для управления состоянием,
+          основанное на принципах <strong>Flux</strong> и immutable state (как и
+          React).
+        </p>
+        <p>
+          В его основе лежит хранилище основанное на базе
+          <strong>publish/subscribe</strong>.
+        </p>
+        <p>
+          Имеет удобный API, основанный на <b>хуках</b>, не создает лишнего
+          шаблонного кода и не навязывает жестких правил использования.
+        </p>
+        <p>
+          Не имеет проблем с <strong>Zombie children</strong> и
+          <strong>context loss</strong> и отлично работает с
+          <strong>React concurrency mode</strong>
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="lightweight">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 120px;
-        left: 250px;
-        height: 400px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Воздушный</h3>
-    <img class="codepic" src="./assets//bundlephobia.png" alt="" />
-  </section>
+    <section class="slide" id="lightweight">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 120px;
+          left: 250px;
+          height: 400px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Воздушный</h3>
+      <img
+        class="codepic"
+        src="./assets//bundlephobia.png"
+        alt="Размер бандла Zustand.js - легковесная библиотека для управления состоянием React"
+      />
+    </section>
 
-  <section class="slide" id="interface">
-    <style>
-      .pic {
-        position: absolute;
-        top: 120px;
-        left: 250px;
-        height: 400px;
-      }
+    <section class="slide" id="interface">
+      <style>
+        .pic {
+          position: absolute;
+          top: 120px;
+          left: 250px;
+          height: 400px;
+        }
 
-      pre {
-        --slide-side: 0;
-      }
+        pre {
+          --slide-side: 0;
+        }
 
-      .slide pre code:not(:only-child)::before {
-        content: none;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Простой в настройке и использовании</h3>
+        .slide pre code:not(:only-child)::before {
+          content: none;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Простой в настройке и использовании</h3>
 
-    <pre>
+      <pre>
       <code>const <b>storeHook</b> = <b>create</b>((set, get) => { store_config })</code>
       <code class="next">storeHook: (<b>selector</b>) => selectedState</code>
       <code class="next">selector: (state) => ({ извлечённые данные из state })</code>
@@ -615,105 +756,125 @@
       <code class="next">storeHook.<b>setState</b>: (newState) => void</code>
       <code class="next">storeHook.<b>subscribe</b>: (callback) => void</code>
     </pre>
-  </section>
+    </section>
 
-  <section class="slide" id="simple_create_store">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 250px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Хранилище очень легко создавать</h3>
-    <img class="codepic" src="./assets/create_store.png" alt="" />
-  </section>
+    <section class="slide" id="simple_create_store">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 250px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Хранилище очень легко создавать</h3>
+      <img
+        class="codepic"
+        src="./assets/create_store.png"
+        alt="Пример создания простого Zustand хранилища для React приложения"
+      />
+    </section>
 
-  <section class="slide" id="create_several_store">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 350px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Можно создавать сколько угодно хранилищ</h3>
-    <img class="codepic" src="./assets/create_several_stores.png" alt="" />
-  </section>
+    <section class="slide" id="create_several_store">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 350px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Можно создавать сколько угодно хранилищ</h3>
+      <img
+        class="codepic"
+        src="./assets/create_several_stores.png"
+        alt="Пример создания нескольких Zustand хранилищ для разных сущностей"
+      />
+    </section>
 
-  <section class="slide" id="create_async_store">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 350px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>В хранилище можно использовать асинхронные методы</h3>
-    <img class="codepic" src="./assets/create_async_store.png" alt="" />
-  </section>
+    <section class="slide" id="create_async_store">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 350px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>В хранилище можно использовать асинхронные методы</h3>
+      <img
+        class="codepic"
+        src="./assets/create_async_store.png"
+        alt="Пример создания Zustand хранилища с асинхронными методами"
+      />
+    </section>
 
-  <section class="slide" id="simple_using_hook">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 370px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Хранилище очень легко использовать в компонентах</h3>
-    <img class="codepic" src="./assets/using_store1.png" alt="" />
-  </section>
+    <section class="slide" id="simple_using_hook">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 370px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Хранилище очень легко использовать в компонентах</h3>
+      <img
+        class="codepic"
+        src="./assets/using_store1.png"
+        alt="Пример использования Zustand хука в React компонентах"
+      />
+    </section>
 
-  <section class="slide" id="using_hook_async_handler">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 370px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Вы можете делать даже так!</h3>
-    <img class="codepic" src="./assets/async_handler.png" alt="" />
-  </section>
+    <section class="slide" id="using_hook_async_handler">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 370px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Вы можете делать даже так! Но лучше так не делать 😊</h3>
+      <img
+        class="codepic"
+        src="./assets/async_handler.png"
+        alt="Пример асинхронного обработчика в Zustand хранилище"
+      />
+    </section>
 
-  <section class="slide" id="middlewares">
-    <h2>Zustand.js</h2>
-    <h3>Middlewares</h3>
+    <section class="slide" id="middlewares">
+      <h2>Zustand.js</h2>
+      <h3>Middlewares</h3>
 
-    <br />
-    <div class="conclusions">
-      <p>
-        Как и в Redux вы можете написать для хранилища свои middleware,
-        которые будут обрабатывать события и изменять состояние хранилища.
-      </p>
       <br />
-      <p>Zustand предлагает в пакете такие middleware как:</p>
-      <ul>
-        <li>
-          <b>persist</b> - для сохранения/восстановления данных в/из
-          localStorage
-        </li>
-        <li><b>immer</b> - для простого мутабельного изменения состояния</li>
-        <li>
-          <b>devtools</b> - для работы с раширением <b>redux devtools</b> для
-          отладки
-        </li>
-      </ul>
-    </div>
-  </section>
+      <div class="conclusions">
+        <p>
+          Как и в Redux вы можете написать для хранилища свои middleware,
+          которые будут обрабатывать события и изменять состояние хранилища.
+        </p>
+        <br />
+        <p>Zustand предлагает в пакете такие middleware как:</p>
+        <ul>
+          <li>
+            <b>persist</b> - для сохранения/восстановления данных в/из
+            localStorage
+          </li>
+          <li><b>immer</b> - для простого мутабельного изменения состояния</li>
+          <li>
+            <b>devtools</b> - для работы с раширением <b>redux devtools</b> для
+            отладки
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  <!-- <section class="slide" id="idea">
+    <!-- <section class="slide" id="idea">
       <h2>Zustand.js</h2>
       <h3>Идея реализации хука</h3>
 
@@ -735,429 +896,462 @@
       </div>
     </section> -->
 
-  <section class="slide" id="idea_realization">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 370px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>А что под капотом? Куда уж проще!?</h3>
-    <img class="codepic" src="./assets/idea_realization.png?v=1" alt="" />
-  </section>
+    <section class="slide" id="idea_realization">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 370px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>А что под капотом? Куда уж проще!?</h3>
+      <img
+        class="codepic"
+        src="./assets/idea_realization.png?v=1"
+        alt="Упрощенная реализация Zustand хука для управления состоянием"
+      />
+    </section>
 
-  <section class="slide" id="real_realization">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 370px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Реальная реализация хука</h3>
-    <img class="codepic" src="./assets/real_realization.png" alt="" />
-  </section>
+    <section class="slide" id="real_realization">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 370px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Реальная реализация хука</h3>
+      <img
+        class="codepic"
+        src="./assets/real_realization.png"
+        alt="Реальная реализация Zustand хука с оптимизациями производительности"
+      />
+    </section>
 
-  <section class="slide" id="using_outside_react">
-    <h2>Zustand.js</h2>
-    <h3>Хранилище можно использовать везде и с любым типом кода!</h3>
+    <section class="slide" id="using_outside_react">
+      <h2>Zustand.js</h2>
+      <h3>Хранилище можно использовать везде и с любым типом кода!</h3>
 
-    <div class="conclusions">
-      <p>Используя статические методы хука:</p>
-      <b>
+      <div class="conclusions">
+        <p>Используя статические методы хука:</p>
+        <b>
+          <ul>
+            <li>.getState()</li>
+            <li>.setState()</li>
+            <li>.subscribe()</li>
+          </ul>
+        </b>
+        <p>
+          вы получаете доступ к стору из любого окружения: как из методов стора,
+          обработчиков событий React компонент, так и из vanilla JavaScript.
+        </p>
+        <p>
+          При этом вы свободно можете использовать асинхронную обработку данных
+          и любые сайд-эффекты!💥💥💥
+        </p>
+      </div>
+    </section>
+
+    <section class="slide" id="optimization">
+      <h2>Zustand.js</h2>
+      <h3>Методы оптимизации производительности</h3>
+      <br />
+      <p>Всего 4 простых метода:</p>
+      <div class="conclusions">
         <ul>
-          <li>.getState()</li>
-          <li>.setState()</li>
-          <li>.subscribe()</li>
+          <li>
+            если селектор не зависит от внутренних переменных - вынесите его за
+            пределы компонента, чтобы не пересоздавать хук каждый раз
+          </li>
+          <li>
+            если селектор имеет параметры - заключите его в
+            <strong>useCallback</strong>
+          </li>
+          <li>
+            если селектор возвращает каждый раз новый объект - оберните вызов
+            селектора в <strong>useShallow</strong>
+          </li>
+          <li>
+            использовать прямую подписку на изменения в обход жизненного цикла
+            React
+          </li>
         </ul>
-      </b>
-      <p>
-        вы получаете доступ к стору из любого окружения: как из методов стора,
-        обработчиков событий React компонент, так и из vanilla JavaScript.
-      </p>
-      <p>
-        При этом вы свободно можете использовать асинхронную обработку данных
-        и любые сайд-эффекты!💥💥💥
-      </p>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section class="slide" id="optimization">
-    <h2>Zustand.js</h2>
-    <h3>Методы оптимизации производительности</h3>
-    <br />
-    <p>Всего 4 простых метода:</p>
-    <div class="conclusions">
-      <ul>
-        <li>
-          если селектор не зависит от внутренних переменных - вынесите его за
-          пределы компонента, чтобы не пересоздавать хук каждый раз
-        </li>
-        <li>
-          если селектор имеет параметры - заключите его в
-          <strong>useCallback</strong>
-        </li>
-        <li>
-          если селектор возвращает каждый раз новый объект - оберните вызов
-          селектора в <strong>useShallow</strong>
-        </li>
-        <li>
-          использовать прямую подписку на изменения в обход жизненного цикла
-          React
-        </li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="ext_selector">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 370px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Оптимизация: вынос селектора за пределы компонента</h3>
+      <img
+        class="codepic"
+        src="./assets/ext_selector.png"
+        alt="Оптимизация Zustand: вынос селектора за пределы React компонента"
+      />
+    </section>
 
-  <section class="slide" id="ext_selector">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 370px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Оптимизация: вынос селектора за пределы компонента</h3>
-    <img class="codepic" src="./assets/ext_selector.png" alt="" />
-  </section>
+    <section class="slide" id="useCallback_selector">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 170px;
+          left: 50px;
+          height: 370px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Оптимизация: оберните в useCallback селектор с параметрами</h3>
+      <img
+        class="codepic"
+        src="./assets/useCallback_selector.png"
+        alt="Оптимизация Zustand: использование useCallback для селекторов с параметрами"
+      />
+    </section>
 
-  <section class="slide" id="useCallback_selector">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 170px;
-        left: 50px;
-        height: 370px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Оптимизация: оберните в useCallback селектор с параметрами</h3>
-    <img class="codepic" src="./assets/useCallback_selector.png" alt="" />
-  </section>
+    <section class="slide" id="useShallow_selector">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 200px;
+          left: 50px;
+          height: 340px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>
+        Оптимизация: оберните в useShallow селектор возвращающий каждый раз
+        новый объект
+      </h3>
+      <img
+        class="codepic"
+        src="./assets/useShallow_selector.png"
+        alt="Оптимизация Zustand: использование useShallow для селекторов возвращающих объекты"
+      />
+    </section>
 
-  <section class="slide" id="useShallow_selector">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 200px;
-        left: 50px;
-        height: 340px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>
-      Оптимизация: оберните в useShallow селектор возвращающий каждый раз
-      новый объект
-    </h3>
-    <img class="codepic" src="./assets/useShallow_selector.png" alt="" />
-  </section>
+    <section class="slide" id="use_Callback_Shallow_selector">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 250px;
+          left: 50px;
+          height: 300px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Оптимизация: самый тяжелый случай</h3>
 
-  <section class="slide" id="use_Callback_Shallow_selector">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 250px;
-        left: 50px;
-        height: 300px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Оптимизация: самый тяжелый случай</h3>
+      <div class="conclusions">
+        <p>
+          Если даже с параметрами ваш селектор может возвращать новый объект -
+          оберните селектор в 2 хука: useCallback и useShallow
+        </p>
+        <img
+          class="codepic"
+          src="./assets/hard_selector.png"
+          alt="Оптимизация Zustand: комбинация useCallback и useShallow для сложных селекторов"
+        />
+      </div>
+    </section>
 
-    <div class="conclusions">
-      <p>
-        Если даже с параметрами ваш селектор может возвращать новый объект -
-        оберните селектор в 2 хука: useCallback и useShallow
-      </p>
-      <img class="codepic" src="./assets/hard_selector.png" alt="" />
-    </div>
-  </section>
+    <section class="slide" id="subscribers">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 210px;
+          left: 50px;
+          height: 340px;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Производительность на максималках</h3>
 
-  <section class="slide" id="subscribers">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 210px;
-        left: 50px;
-        height: 340px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Производительность на максималках</h3>
+      <p>Используем механизм подписок без лишних перерисовок</p>
+      <img
+        class="codepic"
+        src="./assets/subsriptions.png"
+        alt="Максимальная производительность Zustand: использование прямых подписок без React рендеринга"
+      />
+    </section>
 
-    <p>Используем механизм подписок без лишних перерисовок</p>
-    <img class="codepic" src="./assets/subsriptions.png" alt="" />
-  </section>
+    <section class="slide" id="zustand_is_dream">
+      <style>
+        ul.succes {
+          list-style-type: none;
+          padding-left: 0;
+        }
 
-  <section class="slide" id="zustand_is_dream">
-    <style>
-      ul.succes {
-        list-style-type: none;
-        padding-left: 0;
-      }
+        ul.succes li {
+          list-style-type: none;
+          background: url("./assets/checked.jpg") no-repeat;
+          background-size: 20px 20px;
+          background-position: 0 50%;
+          padding-left: 30px;
+        }
 
-      ul.succes li {
-        list-style-type: none;
-        background: url("./assets/checked.jpg") no-repeat;
-        background-size: 20px 20px;
-        background-position: 0 50%;
-        padding-left: 30px;
-      }
+        .slide ul.succes > li:lang(ru)::before {
+          content: none;
+        }
+      </style>
+      <h2>Итого: Zustand - мечта разработчика!</h2>
+      <div class="conclusions">
+        <ul class="succes">
+          <li>компактный</li>
+          <li>простой в подключении</li>
+          <li>простой в использовании</li>
+          <li>не добавляющий когнитивной нагрузки</li>
+          <li>активно доставляющий изменения в представление</li>
+          <li>производительный</li>
+          <li>легко оптимизируемый</li>
+          <li>легко масштабируемый</li>
+          <li>имеющий легко коддерживаемый код</li>
+          <li>исключающий проблемы типа Zombie children и context loss</li>
+          <li>поддерживающий работу React concurency mode</li>
+        </ul>
+      </div>
+    </section>
 
-      .slide ul.succes>li:lang(ru)::before {
-        content: none;
-      }
-    </style>
-    <h2>Итого: Zustand - мечта разработчика!</h2>
-    <div class="conclusions">
-      <ul class="succes">
-        <li>компактный</li>
-        <li>простой в подключении</li>
-        <li>простой в использовании</li>
-        <li>не добавляющий когнитивной нагрузки</li>
-        <li>активно доставляющий изменения в представление</li>
-        <li>производительный</li>
-        <li>легко оптимизируемый</li>
-        <li>легко масштабируемый</li>
-        <li>имеющий легко коддерживаемый код</li>
-        <li>исключающий проблемы типа Zombie children и context loss</li>
-        <li>поддерживающий работу React concurency mode</li>
-      </ul>
-    </div>
-  </section>
+    <section class="slide" id="retrospection">
+      <style>
+        .slide figure {
+          margin: 50px;
+          margin-top: 30px;
+          margin-bottom: 10px;
+        }
 
-  <section class="slide" id="retrospection">
-    <style>
-      .slide figure {
-        margin: 50px;
-        margin-top: 30px;
-        margin-bottom: 10px;
-      }
+        .slide blockquote + figcaption {
+          margin: auto;
+        }
+      </style>
+      <h2>Zustand.js</h2>
+      <h3>Немного размышлений</h3>
 
-      .slide blockquote+figcaption {
-        margin: auto;
-      }
+      <figure>
+        <blockquote>
+          Не каждый (если никто), чей голос громче всех звучит, или кто у всех
+          на виду или в авторитете - есть Моисей!
+        </blockquote>
+        <figcaption>© typeof Object</figcaption>
+      </figure>
 
-      .slide blockquote {
-        line-height: 40px;
-      }
-    </style>
-    <h2>Zustand.js</h2>
-    <h3>Немного размышлений</h3>
-
-    <!-- <figure>
-      <blockquote>
-        Не каждый (если никто), чей голос громче всех звучит, или кто у всех
-        на виду - есть Моисей!
-      </blockquote>
-      <figcaption>© typeof Object</figcaption>
-    </figure> -->
-
-    <div class="conclusions">
-      <!-- <p>
+      <div class="conclusions">
+        <p>
           Фронтенду пришлось 10 лет бродить по технологическим дебрям, чтобы
           прийти к тому, к чему мы пришли сегодня с Zustand!
+        </p>
+        <p>
+          Pub/sub был в MV* с незапамятных времен - нам оставалось лишь выделить
+          в абстракцию селектор, объединить все модели в один стор и оформить
+          аналог хука!<br />
+          Но на том повороте мы свернули не туда и пошли не за теми ...
+        </p>
+      </div>
+    </section>
+
+    <section class="slide" id="recommendations-1">
+      <h2>Рекомендации</h2>
+      <h3>1. Все связанные сущности держите в одном хранилище</h3>
+
+      <div class="conclusions">
+        <p>
+          В последнее время у новичков, кто руками не проходил стадию развития с
+          использованием MV*, наблюдается тенденция наступать на те грабли, что
+          индустрия уже давно прошла: <b>model hell</b> - появляются различные
+          амёбные, молекулярные, атомные и кварковые "стейт-менеджеры"
+        </p>
+        <p>Использование отдельных хранилищь оправдано лишь:</p>
+        <ul>
+          <li>
+            для набора не связанных сущностей<sup style="color: red">*</sup>
+          </li>
+          <li>
+            для частей проекта, разрабатываем разными командами<sup
+              style="color: red"
+              >*</sup
+            >
+          </li>
+        </ul>
+        <p>
+          <sup style="color: red">*</sup> - когда реально нет пересечений
+          запросов к этим сущностям
+        </p>
+      </div>
+    </section>
+
+    <section class="slide" id="recommendations-2">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 320px;
+          left: 50px;
+          height: 220px;
+        }
+      </style>
+      <h2>Рекомендации</h2>
+      <h3>2. Методы хранилища создавайте вне его описания</h3>
+
+      <div class="conclusions">
+        <p>
+          Вопреки примерам из документации, рекомендую не создавать методы
+          хранилища внутри него - если у вас в хранилище много сущностей или
+          сущности сложные, а их методы обработки достаточно объемные - описание
+          вашего хранилища станет не читаемым, не понимаемым и плохо
+          поддерживаемым.
+        </p>
+      </div>
+      <img
+        class="codepic"
+        src="./assets/store_ext_method.png"
+        alt="Рекомендация: создание методов Zustand хранилища вне его описания для лучшей читаемости"
+      />
+    </section>
+
+    <section class="slide" id="recommendations-3">
+      <style>
+        .slide .codepic {
+          position: absolute;
+          top: 250px;
+          left: 50px;
+          height: 300px;
+        }
+      </style>
+      <h2>Рекомендации</h2>
+      <h3>3. Доступ к данным в хранилище только при помощи его методов!</h3>
+
+      <div class="conclusions">
+        <p>
+          Если хотите иметь надежное приложение с минимумом багов - никогда!,
+          никогда не давайте доступ к хранилищу разрабочкикам в обход его
+          методов!
+        </p>
+      </div>
+      <img
+        class="codepic"
+        src="./assets/create_store_export_only_methods.png"
+        alt="Рекомендация: экспорт только методов Zustand хранилища для обеспечения целостности данных"
+      />
+    </section>
+
+    <section class="slide" id="recommendations-4">
+      <h2>Рекомендации</h2>
+      <h3>4. Создавайте настоящее хранилище данных, а не иммитацию его!</h3>
+
+      <div class="conclusions">
+        <p>
+          Проблема подавляющего большинства проектов заключается в том, что
+          никто не соблюдает правило единственной отвественности - логика
+          валидации и изменения данных размазана по всему коду, а хранилище
+          используется исключительно как хранилище json! Отсюда и 99% багов в
+          приложении.
+        </p>
+        <!-- <p>
+          Данные в хранилище должны быть максимально защищены от разработчика -
+          в наше время верить нельзя никому, порой даже самому себе ... :)
         </p> -->
-      <p>
-        А ведь <strong>Pub/sub</strong> был в <strong>MV*</strong> с незапамятных времен - нам оставалось лишь выделить
-        в абстракцию <strong>селектор</strong>, объединить все модели в <strong>один стор</strong> и оформить
-        <strong>аналог хука</strong> (и это легко реализуется на нативном js)!<br />
-      </p>
-      <br>
-      <p>
-        Так иногда бывает в индустрии - чтобы прийти к верному решению порой приходится делать технологический крюк и
-        потратить на это годы!
-      </p>
-    </div>
-  </section>
+        <p>
+          Хранилище должно валидировать данные на входе, сериализивать их,
+          проверить ссылочную целостность внутри и только после этого обновлять
+          их и отдать их обратно сериализированными - только в этом случае вы
+          получите не убиваемое ядро приложения и надежное приложение!
+        </p>
+        <p>
+          Инкапсуляция бизнес-логики в методах стора позволит безболезненно
+          менять стейт-менеджер - приложение использует только методы сторов!
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="recommendations-1">
-    <h2>Рекомендации</h2>
-    <h3>1. Все связанные сущности держите в одном хранилище</h3>
+    <section class="slide" id="experience-1">
+      <h2>Опыт внедрения и эксплуатации</h2>
+      <h3>Внедрение</h3>
 
-    <div class="conclusions">
-      <p>
-        В последнее время у новичков, кто руками не проходил стадию развития с
-        использованием MV*, наблюдается тенденция наступать на те грабли, что
-        индустрия уже давно прошла: <b>model hell</b> - появляются различные
-        амёбные, молекулярные, атомные и кварковые "стейт-менеджеры"
-      </p>
-      <p>Использование отдельных хранилищь оправдано лишь:</p>
-      <ul>
-        <li>
-          для набора не связанных сущностей<sup style="color: red">*</sup>
-        </li>
-        <li>
-          для частей проекта, разрабатываем разными командами<sup style="color: red">*</sup>
-        </li>
-      </ul>
-      <p>
-        <sup style="color: red">*</sup> - когда реально нет пересечений
-        запросов к этим сущностям
-      </p>
-    </div>
-  </section>
+      <div class="conclusions">
+        <p>
+          Перевод проекта с Redux на Zustand произошел очень быстро и без
+          проблем - благодаря сходству семантики в обоих подходах (отправка
+          actions/вызов методов хранилища и использование хуков) при переходе не
+          возникало никаких проблем.
+        </p>
+        <p>
+          Параллельно хранилищу Redux было создано хранилище Zustand и
+          постепенно все сущности без боли переносились в новый стор.
+        </p>
+        <p>
+          Самое главное - разработчики делали это с большим удовольствием и даже
+          не просили денег за это! 😊
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="recommendations-2">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 320px;
-        left: 50px;
-        height: 220px;
-      }
-    </style>
-    <h2>Рекомендации</h2>
-    <h3>2. Методы хранилища создавайте вне его описания</h3>
+    <section class="slide" id="experience-2">
+      <h2>Опыт внедрения и эксплуатации</h2>
+      <h3>Эксплуатация</h3>
 
-    <div class="conclusions">
-      <p>
-        Вопреки примерам из документации, рекомендую не создавать методы
-        хранилища внутри него - если у вас в хранилище много сущностей или
-        сущности сложные, а их методы обработки достаточно объемные - описание
-        вашего хранилища станет не читаемым, не понимаемым и плохо
-        поддерживаемым.
-      </p>
-    </div>
-    <img class="codepic" src="./assets/store_ext_method.png" alt="" />
-  </section>
+      <div class="conclusions">
+        <p>
+          Сказать о том, что разработка с Zustand упростилась - это не сказать
+          ничего!
+        </p>
+        <p>
+          Благодаря Zustand вся логика, связанная с доменными сущностями была
+          собрана в хранилище. Используя Zustand вместе с
+          <b>"прагматичной архитектурой"</b> (тема отдельного доклада) мы почти
+          избавились от тестов (мы пишем их по минимуму) - в коде практически не
+          осталось места для багов!
+        </p>
+        <p>
+          Мы отдали на откуп джуниоров создание визуала - они создают
+          компоненты, логику отображения и сражаются со storybook - данные же
+          подключаются к компонентам одной строчкой в контейнерах!<br />
+          Код проекта стал структурированным, простым и понимаемым, а в проекте
+          мы практически избавились от багов!
+        </p>
+      </div>
+    </section>
 
-  <section class="slide" id="recommendations-3">
-    <style>
-      .slide .codepic {
-        position: absolute;
-        top: 250px;
-        left: 50px;
-        height: 300px;
-      }
-    </style>
-    <h2>Рекомендации</h2>
-    <h3>3. Доступ к данным в хранилище только при помощи его методов!</h3>
+    <section class="slide" id="final">
+      <h2>Ну вот и всё - финал!</h2>
+      <h3>Заключение</h3>
 
-    <div class="conclusions">
-      <p>
-        Если хотите иметь надежное приложение с минимумом багов - никогда!,
-        никогда не давайте доступ к хранилищу разрабочкикам в обход его
-        методов!
-      </p>
-    </div>
-    <img class="codepic" src="./assets/create_store_export_only_methods.png" alt="" />
-  </section>
+      <br />
+      <div class="conclusions">
+        <p>
+          Начинайте активно в своих проектах переходить на самый простой, самый
+          современный и самый быстрый стейт-менеджер - он существует уже
+          несколько лет! Сделайте себе и людям хорошо!
+        </p>
+        <p>
+          Используйте Zustand совместно с правильной архитектурой приложения и
+          будет вам счастье!
+        </p>
+      </div>
 
-  <section class="slide" id="recommendations-4">
-    <h2>Рекомендации</h2>
-    <h3>4. Создавайте настоящее хранилище данных, а не иммитацию его!</h3>
+      <br />
+      <b>Желаю всем приятной и эффективной разработки!</b>
+    </section>
 
-    <div class="conclusions">
-      <p>
-        Проблема подавляющего большинства проектов заключается в том, что
-        никто не соблюдает правило единственной отвественности - логика
-        валидации и изменения данных размазана по всему коду, а хранилище
-        используется исключительно как хранилище json! Отсюда и 99% багов в
-        приложении.
-      </p>
-      <!-- <p>
-        Данные в хранилище должны быть максимально защищены от разработчика -
-        в наше время верить нельзя никому, порой даже самому себе ... :)
-      </p> -->
-      <p>
-        Хранилище должно валидировать данные на входе, сериализивать их,
-        проверить ссылочную целостность внутри и только после этого обновлять
-        и отдать их обратно замороженными от изменений - только в этом случае вы
-        получите не убиваемое ядро приложения и надежное приложение!
-      </p>
-      <p>
-        Инкапсуляция бизнес-логики в методах стора позволит безболезненно
-        менять стейт-менеджер - приложение использует только методы сторов!
-      </p>
-    </div>
-  </section>
+    <!-- <section class="slide"></section> -->
 
-  <section class="slide" id="experience-1">
-    <h2>Опыт внедрения и эксплуатации</h2>
-    <h3>Внедрение</h3>
+    <footer class="badge">
+      <a href="https://github.com/budarin/zustand-presentation-src"
+        >Fork me on GitHub</a
+      >
+    </footer>
 
-    <div class="conclusions">
-      <p>
-        Перевод проекта с Redux на Zustand произошел очень быстро и без
-        проблем - благодаря сходству семантики в обоих подходах при переходе не
-        возникало никаких проблем.
-      </p>
-      <p>
-        Параллельно хранилищу Redux было создано хранилище Zustand и
-        постепенно все сущности без боли переносились в новый стор.
-      </p>
-      <!-- <p>
-        Самое главное - разработчики делали это с большим удовольствием и даже
-        не просили денег за это! 😊
-      </p> -->
-    </div>
-  </section>
+    <div class="progress"></div>
 
-  <section class="slide" id="experience-2">
-    <h2>Опыт внедрения и эксплуатации</h2>
-    <h3>Эксплуатация</h3>
-
-    <div class="conclusions">
-      <p>
-        Сказать о том, что разработка с Zustand упростилась - это не сказать
-        ничего!
-      </p>
-      <p>
-        Благодаря Zustand вся логика, связанная с доменными сущностями была
-        собрана в хранилище. Используя Zustand вместе с
-        <b>"адаптивной слоёной архитектурой"</b> мы почти
-        избавились от тестов (мы пишем их по минимуму) - в коде практически не
-        осталось места для багов!
-      </p>
-      <p>
-        Мы отдали на откуп джунов создание визуала - они создают
-        компоненты, логику отображения и сражаются со storybook - данные же
-        подключаются к компонентам парой строчек в контейнерах!<br />
-        Код проекта стал структурированным, простым и понимаемым, а в проекте
-        мы практически избавились от багов!
-      </p>
-    </div>
-  </section>
-
-  <section class="slide" id="final">
-    <h2>Ну вот и всё - финал!</h2>
-    <h3>Заключение</h3>
-
-    <br />
-    <div class="conclusions">
-      <p>
-        Начинайте активно в своих проектах переходить на самый простой, самый
-        современный и самый быстрый стейт-менеджер - он существует уже
-        несколько лет! Сделайте себе и людям хорошо!
-      </p>
-      <p>
-        Используйте Zustand совместно с правильной архитектурой приложения и
-        будет вам счастье!
-      </p>
-    </div>
-
-    <br />
-    <b>Желаю всем приятной и эффективной разработки!</b>
-  </section>
-
-  <!-- <section class="slide"></section> -->
-
-  <footer class="badge">
-    <a href="https://github.com/shower/shower">Fork me on GitHub</a>
-  </footer>
-
-  <div class="progress"></div>
-
-  <script src="shower/shower.js"></script>
-  <!-- Copyright © 2024 Yours Truly, Famous Inc. -->
-</body>
-
+    <script src="shower/shower.js"></script>
+    <!-- Copyright © 2024 Yours Truly, Famous Inc. -->
+  </body>
 </html>

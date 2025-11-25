@@ -4,7 +4,7 @@ import { useCounterStore } from "./store";
 function Counter() {
   const count = useCounterStore((state) => state.count);
 
-  const onClick = async () => {
+  const onClick = () => {
     setTimeout(async () => {
       const resp = await fetch("https://my-bank/api/getBalance");
       const { balance } = await resp.json();

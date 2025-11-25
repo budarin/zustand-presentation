@@ -1,6 +1,6 @@
 import { useSyncExternalStoreWithSelector } from "react";
 
-export function useStore(store, selector, equalityFn) {
+function useStore(store, selector, equalityFn) {
   return useSyncExternalStoreWithSelector(
     store.subscribe,
     store.getState,
@@ -9,3 +9,5 @@ export function useStore(store, selector, equalityFn) {
     equalityFn
   );
 }
+
+export default useStore;
